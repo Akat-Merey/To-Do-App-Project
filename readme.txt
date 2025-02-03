@@ -1,4 +1,4 @@
-Author: Akat Merey
+Author: Akat Merey and Toktarkanov Rakhat
 
 About the project:
     It is a to do app project, where you can add any task to the website. The tasks will be displayed based on the date of upload and your current time(past, today, future). 
