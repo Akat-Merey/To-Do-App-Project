@@ -1,0 +1,120 @@
+body {
+    background-color: #fff;
+    font-family: 'Poppins';
+}
+
+.topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #F7FBFC;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e2e2e2;
+  }
+
+.logo-link {
+    text-decoration: none;
+}
+  
+.logo {
+    display: flex;
+    align-items: center;
+  }
+  
+.icon {
+    background-color: #BAD7DF;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    margin-right: 0.1rem;
+    font-weight: bold;
+    color: #27374D;
+  }  
+
+.nav-a {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    color: #27374D;
+}  
+
+.add-btn {
+    background-color: #BAD7DF;
+    size: 100px;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    color: #27374D;
+}
+
+.add-btn:hover {
+    background-color: #769FCD;
+    transform: scale(1.05);
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+}
+
+
+#journal-form {
+    background-color: #e1f0f5; 
+    padding: 2rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e2e2e2;
+    width: 450px;
+}
+
+
+#journal-form label {
+    display: block;
+    font-weight: bold;
+    color: #27374D;
+}
+
+#journal-form input,
+#journal-form textarea,
+#journal-form select {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#journal-form input:focus,
+#journal-form textarea:focus,
+#journal-form select:focus {
+    outline: none;
+    border-color: #3498db; 
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+
+#journal-form button {
+    background-color: #93c7d3; 
+    color: #27374D;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#journal-form button:hover {
+    background-color: #73b0c3; 
+}
+
+

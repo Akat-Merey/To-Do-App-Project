@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <div class="topnav">
+            <a href="" class="logo-link">
+                <div class="logo">
+                    <span class="icon">TO DO</span>
+                </div>
+            </a>
+            <a class="nav-a" href="/to-do-app">Home</a>
+            <a class="nav-a" href="#contact">Contact</a>
+            <a class="nav-a" href="#about">About</a>
+            <!-- Button to navigate to the "Add New To Do" page -->
+            <button class="add-btn" onclick="window.location.href='/to-do-app/addPost'">Add new To Do</button>
+        </div>
+    </section>
+    <section class="filter">
+        <div class="filter-container">
+            <label for="category-filter" class="filter-label">Category:</label>
+             <!-- Form for filtering tasks by category -->
+            <form action="http://localhost:8000/to-do-app" method="get">
+            <!-- Dropdown for selecting a category to filter tasks -->
+            <select id="category-filter" class="filter-select" name="category">
+                <option value="">All</option>
+                <option value="Work" <%= result.category === "Work" ? "selected" : "" %>>Work</option>
+                <option value="Study" <%= result.category === "Study" ? "selected" : "" %>>Study</option>
+                <option value="Health" <%= result.category === "Health" ? "selected" : "" %>>Health</option>
+                <option value="Sport" <%= result.category === "Sport" ? "selected" : "" %>>Sport</option>
+                <option value="Social" <%= result.category === "Social" ? "selected" : "" %>>Social</option>
+                <option value="Self-development" <%= result.category === "Self-development" ? "selected" : "" %>>Self-development</option>
+                <option value="Daily" <%= result.category === "Daily" ? "selected" : "" %>>Daily</option>
+            </select>
+            <button class="filter-button">Filter</button>
+        </form>
+        </div>
+    </section>
+    <section class="main">
+        <section class="to-do">
+            <div class="to-do-head">
+                <h1 style="text-align: left; font-size: 25px; margin-left: 5px; margin-top: 5px;">To do's</h1>
+            </div>
+            <%
+            <!-- Formatting date into format Day Month, HH:MM -->
+            function formatDate(date) {
+              const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              const day = date.getDate().toString().padStart(2, '0');
+              const month = months[date.getMonth()];
+              const hours = date.getHours().toString().padStart(2, '0');
+              const minutes = date.getMinutes().toString().padStart(2, '0');
+              return `${month} ${day}, ${hours}:${minutes}`;
+            }
+            <!-- Formatting date into format HH:MM for today tasks-->
+            function formatDate_today(date) {
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = months[date.getMonth()];
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                return `${hours}:${minutes}`;
+              }
+            %>
+            <!-- Check if past tasks are available and length of it greater than 0 -->
+            <% if (result.toDo.past && result.toDo.past.length > 0) { %> 
+                <h1>Past</h1>
+                <!-- Loop for iterating each document in collection -->
+                <% result.toDo.past.forEach(function(task) { %>
+                    <div class="to-do-task <%= task.category.toLowerCase().replace(' ', '-') %>" style="border: 2px solid red; opacity: 0.7;">
+                        <div class="mark">
+                            <input class="radioButton" type="radio" name="<%=task._id%>" onclick="changeToDo('<%=task._id%>')" style="width: 25px; height: 25px;">
+                        </div>
+                        <div class="task-info">
+                            <h1><%=task.title %></h1>
+                            <p><%=task.details %></p>
+                            <p style="color: red; font-weight: bold;"><%=formatDate(task.date) %></p>
+                            <p><%=task.category %></p>
+                        </div>
+                        <div class="close">
+                            <a href='#' onclick="deleteTask('<%= task._id %>')"><svg class="close-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Close_LG"> <path id="Vector" d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <!-- If there is no past tasks then display: -->
+               <p>There is no Past tasks.</p>
+            <% } %>
+            <!-- Check if today tasks are available and length of it greater than 0 -->
+            <% if (result.toDo.today && result.toDo.today.length > 0) { %> 
+                <h1>Today</h1>
+                <!-- Loop for iterating each document in collection -->
+                <% result.toDo.today.forEach(function(task) { %>
+                    <div class="to-do-task <%= task.category.toLowerCase().replace(' ', '-') %>">
+                        <div class="mark">
+                            <input class="radioButton" type="radio" name="<%=task._id%>" onclick="changeToDo('<%=task._id%>')" style="width: 25px; height: 25px;">
+                        </div>
+                        <div class="task-info">
+                            <h1><%=task.title %></h1>
+                            <p><%=task.details %></p>
+                            <p><%=formatDate_today(task.date) %></p>
+                            <p><%=task.category %></p>
+                        </div>
+                        <div class="close">
+                            <a href='#' onclick="deleteTask('<%= task._id %>')"><svg class="close-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Close_LG"> <path id="Vector" d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <!-- If there is no tasks for today then display: -->
+               <p>Unable to fetch today tasks.</p>
+            <% } %>
+            <!-- Check if future tasks are available and length of it greater than 0 -->
+            <% if (result.toDo.future && result.toDo.future.length > 0) { %> 
+                <!-- Loop for iterating each document in collection -->
+                <h1>Future</h1>
+                <% result.toDo.future.forEach(function(task) { %>
+                    <div class="to-do-task <%= task.category.toLowerCase().replace(' ', '-') %>">
+                        <div class="mark">
+                            <input class="radioButton" type="radio" name="<%=task._id%>" onclick="changeToDo('<%=task._id%>')" style="width: 25px; height: 25px;">
+                        </div>
+                        <div class="task-info">
+                            <h1><%=task.title %></h1>
+                            <p><%=task.details %></p>
+                            <p><%=formatDate(task.date) %></p>
+                            <p><%=task.category %></p>
+                        </div>
+                        <div class="close">
+                            <a href='#' onclick="deleteTask('<%= task._id %>')"><svg class="close-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Close_LG"> <path id="Vector" d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></a>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <!-- If there is no tasks for future then display: -->
+               <p>No future tasks available</p>
+            <% } %>
+        </section>
+        <section class="done">
+            <!-- Check if completed tasks are available and length of it greater than 0 -->
+                <% if (result.done && result.done.length > 0) { %> 
+                    <h1 style="text-align: left; font-size: 25px; margin-top: 5px;">Completed Tasks</h1>
+                    <!-- Loop for iterating each document in collection -->
+                    <% result.done.forEach(function(task) { %>
+                        <div class="to-do-task <%= task.category.toLowerCase().replace(' ', '-') %>">
+                            <div class="mark">
+                                <input class="radioButton" type="radio" name="<%=task._id%>" onclick="changeDone('<%=task._id%>')" checked style="width: 25px; height: 25px;">
+                            </div>
+                            <div class="task-info">
+                                <s><h1><%=task.title %></h1></s>
+                                <p><%=task.details %></p>
+                                <p><%=formatDate(task.date) %></p>
+                                <p><%=task.category %></p>
+                            </div>
+                            <div class="close">
+                                <a href='#' onclick="deleteTask('<%= task._id %>')"><svg class="close-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Close_LG"> <path id="Vector" d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></a>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <!-- If there is no completed tasks then display: -->
+                   <h1 style="text-align: left; font-size: 25px;">Tasks not yet completed</h1>
+                <% } %>
+            </div>
+        </section>
+    </section>
+    <script>
+        async function changeToDo(taskId) {
+            try {
+                // Send a PATCH request to the server to mark the task as done
+                const response = await fetch(`http://localhost:8000/to-do-app/markingDone/${taskId}`, {
+                    method: 'PATCH',
+                });
+
+                if (response.ok) {
+                    // Reload the page to reflect the updated task status
+                    location.reload(); 
+                } else {
+                    console.error('Failed to update the task:', response.status);
+                }
+            } catch (er) {
+                console.error('Error:', er);
+            }
+        }
+
+        async function changeDone(taskId) {
+            try {
+                // Send a PATCH request to the server to remove the "done" mark
+                const response = await fetch(`http://localhost:8000/to-do-app/removingMarkDone/${taskId}`, {
+                    method: 'PATCH',
+                });
+
+                if (response.ok) {
+                    // Reload the page to reflect the updated task status
+                    location.reload(); 
+                } else {
+                    console.error('Failed to update the task:', response.status);
+                }
+            } catch (er) {
+                console.error('Error:', er);
+            }
+        }
+        
+       async function deleteTask(taskId) {
+           try {
+                // Send a DELETE request to the server to remove the task
+               const response = await fetch(`/to-do-app/${taskId}`, {
+                   method: 'DELETE',
+               });
+               if (response.ok) {
+                    // Notify the user that the task was successfully deleted
+                   alert('Task deleted successfully');
+                   // Reload the page to reflect the changes
+                   location.reload(); 
+               } else {
+                   alert('Failed to delete the task');
+               }
+           } catch (error) {
+               console.error('Error deleting task:', error);
+               alert('An error occurred while deleting the task');
+           }
+       }
+   </script>
+</body>
+</html>

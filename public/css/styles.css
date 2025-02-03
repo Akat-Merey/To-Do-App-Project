@@ -1,0 +1,243 @@
+body {
+    background-color: #fff;
+    font-family: 'Poppins';
+}
+h1, p {
+    margin: 2px;
+}
+
+
+.topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #F7FBFC;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e2e2e2;
+  }
+
+.logo-link {
+    text-decoration: none;
+}
+  
+.logo {
+    display: flex;
+    align-items: center;
+  }
+  
+.icon {
+    background-color: #BAD7DF;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    margin-right: 0.1rem;
+    font-weight: bold;
+    color: #27374D;
+  }  
+
+.nav-a {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    color: #27374D;
+}  
+
+.add-btn {
+    background-color: #BAD7DF;
+    size: 100px;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    color: #27374D;
+}
+
+.add-btn:hover {
+    background-color: #769FCD;
+    transform: scale(1.05);
+}
+
+.filter {
+    display: flex;
+    justify-content: right;
+    margin-top: 5px;
+}
+
+.to-do-head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+
+}
+
+.filter-label {
+    font-size: 16px;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+    border-color: #0078d7;
+    box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+}
+
+.filter-select:hover {
+    background-color: #f1f1f1;
+}
+
+.filter-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #BAD7DF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #769FCD;
+    transform: scale(1.05);
+}
+
+
+.main {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.to-do {
+    flex: 1;
+    max-width: 50%;
+    background-color: #F7FBFC;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 600px;
+}
+
+.close {
+    margin: 5px;
+}
+.close-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.to-do-task.work {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #FF5733; 
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.to-do-task.study {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #3498DB; 
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.to-do-task.health {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #2ECC71;
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.to-do-task.sport {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #F39C12; 
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.to-do-task.social {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #9B59B6;
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.to-do-task.self-development {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #d390c3;
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.to-do-task.daily {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    background-color: #BAD7DF; 
+    border: 1px solid #c1bdbd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-bottom: 25px;
+}
+.done {
+    flex: 1;
+    max-width: 50%;
+    background-color: #F7FBFC;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 600px;
+}
