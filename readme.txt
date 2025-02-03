@@ -2,8 +2,10 @@ Author: Akat Merey
 
 About the project:
     It is a to do app project, where you can add any task to the website. The tasks will be displayed based on the date of upload and your current time(past, today, future). 
+    It also got filter options based on the category of the task, which can be chosen in "Create a task" page
     Also, you can press the checkbox of any task to mark it as "done". "Done" tasks are displayed in the right side of the website. 
     Also you can delete the tasks (totally delete from the database)
+
 
 
 Used technics/methods/tools:
@@ -11,6 +13,8 @@ Used technics/methods/tools:
     - express and node.js
     - Restfull API (Post, Delete, Get, Patch methods)
     - asynchronous programming
+    - error responses
+    - RESTful API structure with MVC principles
 
 
 How to launch the project:
@@ -81,5 +85,5 @@ How to launch the project:
             "status": false,
             "category": "Health",
             "__v": 0
-        },
+        }
     ]
